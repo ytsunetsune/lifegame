@@ -60,10 +60,17 @@
 
 
 ;; main
-(setq l (make-instance 'lifegame))
-(init-field l)
-(dotimes (i 2000)
-  (show-field l)
-  (sleep 1)
-  (next-step l))
+(defun main ()
+  (setq l (make-instance 'lifegame))
+  (init-field l)
+  (dotimes (i 2000)
+    (show-field l)
+    (sleep 1)
+    (next-step l)))
+
+(ext:saveinitmem "lifegame"
+                 :quiet t
+                 :norc t
+                 :init-function #'main
+                 :executable t)
 
